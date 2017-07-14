@@ -1,0 +1,27 @@
+<%= form_for(timer_input) do |f| %>
+  <% if timer_input.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(timer_input.errors.count, "error") %> prohibited this timer_input from being saved:</h2>
+
+      <ul>
+      <% timer_input.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  </div>
+
+  <div class="field">
+    <%= f.label :set_timer %>
+    <%= f.number_field :set_timer %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

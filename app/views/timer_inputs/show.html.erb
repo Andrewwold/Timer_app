@@ -1,0 +1,48 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @timer_input.title %>
+</p>
+
+<p>
+  <audio id="beepAudio"></audio>
+  <strong>Set timer:</strong>
+  <button class="start">Start Clock</button>
+  <div class="clock"></div>
+  <div class="message"></div>
+</p>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/flipclock/0.7.8/flipclock.min.js"></script>
+
+<script type="text/javascript">
+  document.getElementById("beepAudio").src = 'http://www.freshly-ground.com/misc/music/20060826%20-%20Armstrong.mp3';
+  document.getElementById("beepAudio").load();
+
+
+
+  time_diff = <%= @timer1 %>;
+
+  var clock = $('.clock').FlipClock(time_diff, {
+    countdown: true,
+    autoStart: false,
+
+    callbacks: {
+      stop: function() {
+        $('.message').html('The clock has stopped!');
+        document.getElementById("beepAudio").play();
+      }
+    }
+  });
+
+  $('.start').click(function(e) {
+    clock.start();
+  });
+
+
+</script>
+
+
+<%= link_to 'Edit', edit_timer_input_path(@timer_input) %> |
+<%= link_to 'Back', timer_inputs_path %>

@@ -1,0 +1,2 @@
+class TimerInput < ApplicationRecord
+end
